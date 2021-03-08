@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Get, Param, Put } from '@nestjs/common';
 import { MaintenanceRequest } from '@suiteportal/api-interfaces';
 import { MaintenanceRequestService } from './maintenance-request.service';
 
@@ -34,4 +34,27 @@ export class MaintenanceRequestController {
     return await this.maintenanceRequestService.getMaintenanceRequest(id);
   }
 
+  @Get('/')
+  public async getOpenMaintenanceRequests() {
+    return await this.maintenanceRequestService.getOpenMaintenanceRequests();
+  }
+
+  @Put('/:id/close')
+  public async closeMaintenanceRequest(
+    @Param('id') id:string,
+  ) {
+    const response = await this.maintenanceRequestService.closeMaintenanceRequest(id);
+    
+    if (!response.id) {
+      throw new BadRequestException('Invalid id provided')
+    }
+
+    const result = {
+      id: response.id,
+      requestOpen: response.requestOpen,
+      closedAt: response.closedAt
+    }
+
+    return result;
+  }
 }

@@ -6,7 +6,10 @@ import * as nanoid from 'nanoid';
 
 export interface MaintenanceRequestDB extends MaintenanceRequest {
   id: string;
+  requestOpen: boolean;
   submittedAt: Date;
+  modifiedAt: Date;
+  closedAt: Date;
 }
 
 export interface MaintenanceRequestData {
@@ -29,19 +32,39 @@ export class MaintenanceRequestDao {
     //
   }
 
+  // Create new maintenance request
   async insertNewRequest(maintenanceRequest: MaintenanceRequest) {
-    const id = { id: nanoid.nanoid(10) };
+    const id = { id: nanoid.nanoid(10) }; // generates random 10 character ID
     await this.collection
       .push({
         ...id,
         ...maintenanceRequest,
+        requestOpen: true,
         submittedAt: new Date(),
+        modifiedAt: new Date(),
+        closedAt: new Date()
       })
       .write()
     return id;
   }
 
+  // Returns specific maintenance request by ID
   async getMaintenanceRequest(id: string): Promise<MaintenanceRequestDB> {
     return await this.collection.find({ id }).value();
+  }
+
+  // Returns all open requests
+  async getOpenMaintenanceRequests(): Promise<MaintenanceRequestData> {
+    return await this.collection.filter({ 'requestOpen': true });
+  }
+
+  // Close a specific maintenance request by ID
+  async closeMaintenanceRequest(id: string): Promise<MaintenanceRequestDB> {
+    return await this.collection.find({ id })
+      .assign({
+        'requestOpen': false,
+        'closedAt': new Date()
+      })
+      .write()
   }
 }
