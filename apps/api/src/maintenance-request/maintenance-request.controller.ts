@@ -1,6 +1,8 @@
-import { BadRequestException, Body, Controller, Post, Get, Param, Put } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Get, Param, Put, UseGuards } from '@nestjs/common';
 import { MaintenanceRequest } from '@suiteportal/api-interfaces';
 import { MaintenanceRequestService } from './maintenance-request.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+
 
 @Controller('maintenance-requests')
 export class MaintenanceRequestController {
@@ -11,6 +13,9 @@ export class MaintenanceRequestController {
     //
   }
 
+  // PUBLIC ROUTES
+
+  // Create new maintenance request
   @Post('/')
   public async createMaintenanceRequest(
     @Body() maintenanceRequest: MaintenanceRequest,
@@ -24,6 +29,11 @@ export class MaintenanceRequestController {
     return await this.maintenanceRequestService.createMaintenanceRequest(maintenanceRequest);
   }
 
+
+  // ADMIN ONLY ROUTES
+
+  // Get a specific maintenance request by ID
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   public async getMaintenanceRequest(
     @Param('id') id: string,
@@ -34,11 +44,15 @@ export class MaintenanceRequestController {
     return await this.maintenanceRequestService.getMaintenanceRequest(id);
   }
 
+  // Get all open maintenance requests
+  @UseGuards(JwtAuthGuard)
   @Get('/')
   public async getOpenMaintenanceRequests() {
     return await this.maintenanceRequestService.getOpenMaintenanceRequests();
   }
 
+  // Close a specific maintenance request by ID
+  @UseGuards(JwtAuthGuard)
   @Put('/:id/close')
   public async closeMaintenanceRequest(
     @Param('id') id:string,

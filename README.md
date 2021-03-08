@@ -109,3 +109,11 @@ Libraries are sharable across libraries and applications. They can be imported f
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
+## Additional packages
+- @nestjs/passport, @nest/jwt, passport, passport-jwt, passport-local
+
+for authentication
+
+- @types/passport-jwt, @types/passport-local
+
+for passport types
