@@ -1,14 +1,12 @@
 {
   "admins": [
     {
-      "userId": 1,
       "username": "admin1",
-      "password": "pw1"
+      "passwordHash": "$2b$10$NQicog3EVtvOzbEyGYrsdO8PCx41TeDy2IWVtDvyOY5iu9olryzAW"
     },
     {
-      "userId": 2,
       "username": "admin2",
-      "password": "pw2"
+      "passwordHash": "$2b$10$Z2oeuzoTgynabZ/GMahZ0O5E9sxVCF8p..JMMOH9dEvPE3.dQCJ.2"
     }
   ]
 }

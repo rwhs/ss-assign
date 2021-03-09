@@ -117,3 +117,7 @@ for authentication
 - @types/passport-jwt, @types/passport-local
 
 for passport types
+
+- bcrypt
+
+for hashing

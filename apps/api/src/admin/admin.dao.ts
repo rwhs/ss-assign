@@ -18,4 +18,18 @@ export class AdminDao {
   async findAdmin(username: string) {
     return await this.collection.find({ username: username }).value();
   }
+
+  // Creates a new admin
+  async createAdmin(username: string, passwordHash: string) {
+    // No admin exists with that name, create new admin
+    if (!this.collection.find({ username: username }).value()) {
+      await this.collection.push({
+        username: username,
+        passwordHash: passwordHash
+      })
+      .write();
+      return true;
+    }
+    return false;
+  }
 }
