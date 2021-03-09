@@ -2,7 +2,7 @@ import { AppService } from './app.service';
 import { Controller, Get, Post, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthService } from '../auth/auth.service';
-import { AdminService } from '../admin/admin.service';
+// import { AdminService } from '../admin/admin.service';
 import { Admin, } from '../admin/admin.service';
 
 @Controller()
@@ -10,7 +10,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private authService: AuthService,
-    private adminService: AdminService,
+    // private adminService: AdminService,
   ) {}
 
   @Get()
@@ -18,7 +18,7 @@ export class AppController {
     return this.appService.getData();
   }
 
-  // Login Route
+  // Login Route to get JWT
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   public async login(

@@ -1,5 +1,5 @@
 import { BadRequestException, Body, Controller, Post, Get, Param, Put, UseGuards } from '@nestjs/common';
-import { MaintenanceRequest } from '@suiteportal/api-interfaces';
+import { MaintenanceRequest, ALL_SERVICE_TYPES } from '@suiteportal/api-interfaces';
 import { MaintenanceRequestService } from './maintenance-request.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
@@ -20,11 +20,23 @@ export class MaintenanceRequestController {
   public async createMaintenanceRequest(
     @Body() maintenanceRequest: MaintenanceRequest,
   ) {
+    if (!maintenanceRequest?.name) {
+      throw new BadRequestException('Must provide a name!')
+    }
+    if (!maintenanceRequest?.email) {
+      throw new BadRequestException('Must provide an email!')
+    }
+    if (!maintenanceRequest?.unitNumber) {
+      throw new BadRequestException('Must provide a unit number!')
+    }
     if (!maintenanceRequest?.summary) {
-      throw new BadRequestException('Must provide a valid summary');
+      throw new BadRequestException('Must provide a valid summary!');
     }
     if (!maintenanceRequest?.serviceType) {
-      throw new BadRequestException('Must provide a valid Service Type');
+      throw new BadRequestException('Must provide a Service Type!');
+    }
+    if (!(ALL_SERVICE_TYPES.includes(maintenanceRequest.serviceType))) {
+      throw new BadRequestException('Must provide a valid Service Type!')
     }
     return await this.maintenanceRequestService.createMaintenanceRequest(maintenanceRequest);
   }
