@@ -1,23 +1,19 @@
 import { Injectable } from '@nestjs/common';
-
-export type Admin = any;
+import { AdminDao } from './admin.dao';
+export interface Admin {
+  username: string,
+  password: string
+} 
 
 @Injectable()
 export class AdminService {
-  private readonly admins = [
-    {
-      userId: 1,
-      username: 'john',
-      password: 'changeme',
-    },
-    {
-      userId: 2,
-      username: 'maria',
-      password: 'guess',
-    },
-  ];
+  constructor(
+    private readonly adminDao: AdminDao
+  ) {
+    //
+  }
 
-  async findOne(username: string): Promise<Admin | undefined> {
-    return this.admins.find(admins => admins.username === username);
+  async findAdmin(username: string): Promise<Admin | undefined> {
+    return this.adminDao.findAdmin(username);
   }
 }

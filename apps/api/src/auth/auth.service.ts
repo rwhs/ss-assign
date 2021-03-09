@@ -10,8 +10,8 @@ export class AuthService {
   ) {}
 
   // Validates admin name and password combination
-  async validateAdmin(username: string, pass: string): Promise<any> {
-    const user = await this.adminService.findOne(username);
+  async validateAdmin(username: string, pass: string) {
+    const user = await this.adminService.findAdmin(username);
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;
