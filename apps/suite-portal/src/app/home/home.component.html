@@ -8,42 +8,42 @@
       </mat-card-header>
 
       <mat-card-content>
-        <form class="maint-form">
+        <form class="maint-form" [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()">
           <mat-form-field>
             <mat-label>Apartment Unit #</mat-label>
-            <input matInput type="text" />
+            <input matInput type="text" formControlName="unitNumber" required/>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Requester Name</mat-label>
-            <input matInput type="text" />
+            <input matInput type="text" formControlName="name" required/>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Requester Email</mat-label>
-            <input matInput type="email" />
+            <input matInput type="email" formControlName="email" required/>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Service Type</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
-                {{serviceType}}
+            <mat-select formControlName="serviceType" required>
+              <mat-option *ngFor="let serviceTypeOption of serviceTypes" [value]="serviceTypeOption">
+                {{serviceTypeOption}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Summary</mat-label>
-            <input matInput type="text" />
+            <input matInput type="text" formControlName="summary" required/>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Details</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput formControlName="details"></textarea>
           </mat-form-field>
 
-          <button mat-raised-button color="accent">
+          <button mat-raised-button color="accent" type="submit">
             Submit
           </button>
         </form>
