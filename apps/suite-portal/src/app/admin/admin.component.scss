@@ -1,0 +1,30 @@
+:host {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-card {
+    width: 280px;
+    padding: 30px;
+  }
+
+  mat-card-header, form.admin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  mat-form-field {
+    width: 80%;
+  }
+
+  p {
+    color: red;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
+  

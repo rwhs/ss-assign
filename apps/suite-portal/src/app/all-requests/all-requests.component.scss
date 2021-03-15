@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .container-card {
+    margin: 80px auto;
+  }
+
+  .logout-button {
+    margin-bottom: 80px;
+  }
+
+  mat-card {
+    min-width: 800px;
+    padding: 50px 0 0 0;
+  }
+
+  mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px
+  }
+
+  mat-card.maint-request {
+    padding: 30px;
+  }
+}
+  

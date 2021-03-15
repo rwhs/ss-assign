@@ -1,0 +1,31 @@
+<!-- <mat-grid-list *ngIf="isLoggedIn" cols="1">
+  <mat-grid-tile> -->
+    <mat-card class="container-card mat-elevation-z4">
+      <mat-card-header>
+        <mat-card-title>
+          All Maintenance Requests
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card *ngFor="let item of items" class="maint-request mat-elevation-z4">
+        <h4>Request ID: {{item.id}}</h4>
+        <p>Requester Name: {{item.name}}</p>
+        <p>Requester Email: {{item.email}}</p>
+        <p>Submitted at: {{item.submittedAt}}</p>
+        <p>Unit Number: {{item.unitNumber}}</p>
+        <p>Service Type: {{item.serviceType}}</p>
+        <p>Summary: {{item.summary}}</p>
+        <p>Details: {{item.details}}</p>
+
+        <button mat-raised-button color="accent" (click)="onClose(item.id)">
+          Close Request
+        </button>
+      </mat-card>
+      
+    </mat-card>
+
+    <button mat-raised-button color="accent" class="logout-button" (click)="onLogout()">
+      Log Out
+    </button>
+  <!-- </mat-grid-tile>
+</mat-grid-list> -->
