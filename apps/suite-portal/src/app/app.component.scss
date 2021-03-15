@@ -1,12 +1,18 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   main {
     padding: var(--sp-margin-size);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   mat-toolbar {
     display: flex;
+    min-height: 50px;
     flex-direction: row;
     justify-content: flex-start;
     mat-label {

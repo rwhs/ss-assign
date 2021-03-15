@@ -30,25 +30,11 @@ export class HomeComponent implements OnInit {
   })
 
   onSubmit() {
-
-    // const formData: any = new FormData();
-
-    // Populate FormData
-    // for (const element in this.maintenanceForm.value) {
-    //   // console.log(element + ': ' + this.maintenanceForm.value[element])
-    //   formData.append(element, this.maintenanceForm.value[element])
-    // }
-
     // Only send POST request if form is valid
     if (this.maintenanceForm.valid) {
       console.log(this.maintenanceForm.value)
       this.http.post('http://localhost:3333/api/maintenance-requests/', this.maintenanceForm.value).subscribe(
         (response) => console.log(response),
-        // {
-        //   if (response) {
-        //     this.maintenanceForm.reset()
-        //   }
-        // },
         (error) => console.log(error)
       )
     }
