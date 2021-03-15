@@ -3,7 +3,7 @@ import { Controller, Get, Post, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from '../auth/local-auth.guard';
 import { AuthService } from '../auth/auth.service';
 // import { AdminService } from '../admin/admin.service';
-import { Admin, } from '../admin/admin.service';
+import { Admin } from '../admin/admin.service';
 
 @Controller()
 export class AppController {

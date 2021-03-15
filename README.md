@@ -121,3 +121,7 @@ for passport types
 - bcrypt
 
 for hashing
+
+- @nestjs/swagger swagger-ui-express
+
+for docs
